@@ -49,10 +49,10 @@ body {
   }
   .pill-label {
     position: absolute;
-    inset: 1.5rem 0 auto;
+    top: 1.5rem;
+    left: 50%;
+    translate: -50% 0;
     writing-mode: vertical-rl;
-    text-align: start;
-    margin-inline: auto;
     transition: opacity 0.2s ease;
   }
   .pill-body {
