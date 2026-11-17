@@ -29,3 +29,52 @@ body {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
+
+@media (min-width: 64rem) {
+  .pills > .pill {
+    flex: 1 1 0;
+    min-width: 4rem;
+    transition: flex-grow 0.45s ease;
+  }
+  .pills > .pill:first-child {
+    flex-grow: 7;
+  }
+  .pills:hover > .pill:first-child,
+  .pills:focus-within > .pill:first-child {
+    flex-grow: 1;
+  }
+  .pills > .pill:hover,
+  .pills > .pill:focus-within {
+    flex-grow: 7 !important;
+  }
+  .pill-label {
+    position: absolute;
+    inset: 1.5rem 0 auto;
+    writing-mode: vertical-rl;
+    text-align: start;
+    margin-inline: auto;
+    transition: opacity 0.2s ease;
+  }
+  .pill-body {
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+  }
+  .pills > .pill:first-child .pill-body,
+  .pills > .pill:hover .pill-body,
+  .pills > .pill:focus-within .pill-body {
+    opacity: 1;
+  }
+  .pills:hover > .pill:first-child:not(:hover) .pill-body,
+  .pills:focus-within > .pill:first-child:not(:focus-within) .pill-body {
+    opacity: 0;
+  }
+  .pills > .pill:hover .pill-label,
+  .pills > .pill:focus-within .pill-label,
+  .pills > .pill:first-child .pill-label {
+    opacity: 0;
+  }
+  .pills:hover > .pill:first-child:not(:hover) .pill-label,
+  .pills:focus-within > .pill:first-child:not(:focus-within) .pill-label {
+    opacity: 1;
+  }
+}
