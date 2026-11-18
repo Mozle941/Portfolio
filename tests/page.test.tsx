@@ -9,7 +9,7 @@ describe("page", () => {
     const { container } = render(<Page />);
     const main = container.querySelector("main#top");
     expect(main).not.toBeNull();
-    for (const id of ["projects", "skills", "contact"]) {
+    for (const id of ["projects", "testimonials", "skills", "contact"]) {
       expect(main?.querySelector(`section#${id}`)).not.toBeNull();
     }
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);

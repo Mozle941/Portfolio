@@ -45,6 +45,11 @@ describe("tokens", () => {
     expect(ratio(token(fg), token(bg))).toBeGreaterThanOrEqual(4.5);
   });
 
+  it("keeps eye tracker pupils carbon-black in light and dark themes", () => {
+    const pupilFills = [...css.matchAll(/--pupil-fill:\s*([^;]+);/g)].map((match) => match[1].trim());
+    expect(pupilFills).toEqual(["#212529", "#212529"]);
+  });
+
   it("hardcodes no colors outside tokens.css", () => {
     const files = [...walk(path.join(root, "app")), ...walk(path.join(root, "components"))]
       .filter((f) => /\.(tsx?|css)$/.test(f));

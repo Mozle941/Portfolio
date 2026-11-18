@@ -1,10 +1,147 @@
 @theme {
-  --color-bg: #2d232e;
-  --color-surface: #474448;
-  --color-text: #f1f0ea;
-  --color-muted: #e0ddcf;
-  --color-accent: #e0ddcf;
-  --color-line: #534b52;
+  --color-bg: #f8f9fa;
+  --color-surface: #e9ecef;
+  --color-text: #212529;
+  --color-muted: #495057;
+  --color-accent: #343a40;
+  --color-line: #ced4da;
   --font-sans: "Space Grotesk Variable", system-ui, sans-serif;
   --font-heading: "Space Grotesk Variable", system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light dark;
+  --bright-snow: #f8f9faff;
+  --platinum: #e9ecefff;
+  --alabaster-grey: #dee2e6ff;
+  --pale-slate: #ced4daff;
+  --pale-slate-2: #adb5bdff;
+  --slate-grey: #6c757dff;
+  --iron-grey: #495057ff;
+  --gunmetal: #343a40ff;
+  --carbon-black: #212529ff;
+  --paper: #f8f9fa;
+  --paper-deep: #e9ecef;
+  --ink: #212529;
+  --ink-soft: #495057;
+  --plum: #343a40;
+  --line: rgba(73, 80, 87, 0.2);
+  --accent-fill: #343a40;
+  --accent-hover: #495057;
+  --accent-dot: #6c757d;
+  --on-accent: #f8f9fa;
+  --eye-button-fill: #343a40;
+  --eye-button-ink: #f8f9fa;
+  --eye-shell-fill: #f8f9fa;
+  --eye-shell-border: rgba(248, 249, 250, 0.7);
+  --pupil-fill: #212529;
+  --brand-mark-bg: #212529;
+  --brand-mark-ink: #f8f9fa;
+  --focus-ring: #343a40;
+  --on-plum: #f8f9fa;
+  --sun-light: #f8f9fa;
+  --sun-mid: #e9ecef;
+  --sun-deep: #adb5bd;
+  --serif: Georgia, "Times New Roman", serif;
+  --white-glass: rgba(248, 249, 250, 0.82);
+  --glass-fill: rgba(248, 249, 250, 0.84);
+  --glass-shadow: rgba(33, 37, 41, 0.08);
+  --paper-halo: rgba(206, 212, 218, 0.3);
+  --white-highlight: rgba(248, 249, 250, 0.92);
+  --ink-18: rgba(33, 37, 41, 0.18);
+  --ink-13: rgba(33, 37, 41, 0.13);
+  --sun-shadow: rgba(73, 80, 87, 0.14);
+  --sun-highlight: rgba(248, 249, 250, 0.62);
+  --sun-shade: rgba(73, 80, 87, 0.1);
+  --accent-wash: rgba(108, 117, 125, 0.16);
+  --accent-halo: rgba(108, 117, 125, 0.14);
+  --card-border: rgba(73, 80, 87, 0.2);
+  --card-white-44: rgba(233, 236, 239, 0.46);
+  --card-white-68: rgba(233, 236, 239, 0.76);
+  --card-shadow: rgba(33, 37, 41, 0.08);
+  --paper-68: rgba(248, 249, 250, 0.72);
+  --paper-20: rgba(248, 249, 250, 0.2);
+  --paper-10: rgba(248, 249, 250, 0.1);
+  --paper-025: rgba(248, 249, 250, 0.025);
+  --paper-02: rgba(248, 249, 250, 0.02);
+  --eye-shadow: rgba(33, 37, 41, 0.12);
+  --eye-shadow-hover: rgba(33, 37, 41, 0.18);
+  --status-halo: rgba(108, 117, 125, 0.15);
+  --eyebrow-muted: #6c757d;
+  --button-border: rgba(33, 37, 41, 0.16);
+  --skill-muted: #6c757d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #212529;
+    --color-surface: #343a40;
+    --color-text: #f8f9fa;
+    --color-muted: #ced4da;
+    --color-accent: #ced4da;
+    --color-line: #495057;
+    --paper: #212529;
+    --paper-deep: #343a40;
+    --ink: #f8f9fa;
+    --ink-soft: #ced4da;
+    --plum: #343a40;
+    --line: rgba(206, 212, 218, 0.2);
+    --accent-fill: #ced4da;
+    --accent-hover: #adb5bd;
+    --accent-dot: #adb5bd;
+    --on-accent: #212529;
+    --eye-button-fill: #ced4da;
+    --eye-button-ink: #212529;
+    --eye-shell-fill: #f8f9fa;
+    --eye-shell-border: rgba(73, 80, 87, 0.65);
+    --pupil-fill: #212529;
+    --brand-mark-bg: #ced4da;
+    --brand-mark-ink: #212529;
+    --focus-ring: #ced4da;
+    --on-plum: #f8f9fa;
+    --sun-light: #6c757d;
+    --sun-mid: #495057;
+    --sun-deep: #343a40;
+    --white-glass: rgba(33, 37, 41, 0.78);
+    --glass-fill: rgba(52, 58, 64, 0.84);
+    --glass-shadow: rgba(33, 37, 41, 0.35);
+    --paper-halo: rgba(108, 117, 125, 0.12);
+    --white-highlight: rgba(248, 249, 250, 0.12);
+    --ink-18: rgba(248, 249, 250, 0.2);
+    --ink-13: rgba(248, 249, 250, 0.14);
+    --sun-shadow: rgba(33, 37, 41, 0.32);
+    --sun-highlight: rgba(248, 249, 250, 0.24);
+    --sun-shade: rgba(33, 37, 41, 0.14);
+    --accent-wash: rgba(206, 212, 218, 0.16);
+    --accent-halo: rgba(206, 212, 218, 0.18);
+    --card-border: rgba(206, 212, 218, 0.16);
+    --card-white-44: rgba(233, 236, 239, 0.045);
+    --card-white-68: rgba(233, 236, 239, 0.09);
+    --card-shadow: rgba(33, 37, 41, 0.35);
+    --paper-68: rgba(248, 249, 250, 0.74);
+    --paper-20: rgba(248, 249, 250, 0.2);
+    --paper-10: rgba(248, 249, 250, 0.12);
+    --paper-025: rgba(248, 249, 250, 0.04);
+    --paper-02: rgba(248, 249, 250, 0.03);
+    --eye-shadow: rgba(33, 37, 41, 0.28);
+    --eye-shadow-hover: rgba(33, 37, 41, 0.42);
+    --status-halo: rgba(173, 181, 189, 0.2);
+    --eyebrow-muted: #adb5bd;
+    --button-border: rgba(33, 37, 41, 0.3);
+    --skill-muted: #adb5bd;
+  }
+}
+
+
+:root {
+  --accent-soft: #495057;
+  --line-soft: rgba(73, 80, 87, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent-soft: #ced4da;
+    --line-soft: rgba(206, 212, 218, 0.2);
+  }
 }

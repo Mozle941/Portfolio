@@ -15,6 +15,7 @@ describe("Header", () => {
 
   it.each([
     ["Projects", "#projects"],
+    ["Reviews", "#testimonials"],
     ["Skills", "#skills"],
     ["Contact", "#contact"],
   ])("links %s to %s", (name, href) => {

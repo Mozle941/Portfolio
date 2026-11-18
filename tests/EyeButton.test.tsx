@@ -8,11 +8,11 @@ describe("EyeButton", () => {
     expect(screen.getByRole("link", { name: "View projects" })).toHaveAttribute("href", "#projects");
   });
 
-  it("moves pupils toward the pointer", () => {
+  it("moves pupils more responsively toward the pointer", () => {
     render(<EyeButton href="#projects">View projects</EyeButton>);
     fireEvent.pointerMove(window, { clientX: 100, clientY: 0 });
     const pupils = screen.getAllByTestId("pupil");
     expect(pupils).toHaveLength(2);
-    for (const p of pupils) expect(p.style.transform).toMatch(/^translate\(5px(, 0px)?\)$/);
+    for (const pupil of pupils) expect(pupil.style.transform).toMatch(/^translate\(7\.5px(, 0px)?\)$/);
   });
 });

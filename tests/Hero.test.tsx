@@ -3,6 +3,13 @@ import { describe, expect, it } from "vitest";
 import Hero from "@/components/Hero";
 
 describe("Hero", () => {
+  it("includes a decorative fluid contour in the hero artwork", () => {
+    const { container } = render(<Hero />);
+    const ribbon = container.querySelector("svg.fluid-ribbon");
+    expect(ribbon).toHaveAttribute("aria-hidden", "true");
+    expect(ribbon?.querySelectorAll("path[fill=none]")).toHaveLength(6);
+  });
+
   it("has exactly one h1 with the name", () => {
     render(<Hero />);
     const h1 = screen.getAllByRole("heading", { level: 1 });

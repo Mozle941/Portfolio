@@ -3,6 +3,7 @@ export type Project = {
   title: string;
   summary: string;
   tags: string[];
+  details: string[];
   repoUrl?: string;
   liveUrl?: string;
 };
@@ -11,52 +12,53 @@ const gh = (name: string) => `https://github.com/Mozle941/${name}`;
 
 export const projects: Project[] = [
   {
-    slug: "polybot-latency",
-    title: "POLYBOT_LATENCY",
-    summary: "A cutting edge market analysis and execution tool",
-    tags: ["Python"],
-    repoUrl: gh("POLYBOT_LATENCY"),
-  },
-  {
-    slug: "my-polybot",
-    title: "My_Polybot",
-    summary: "A bot for copy trading on prediction markets",
-    tags: ["Python"],
-    repoUrl: gh("My_Polybot"),
-  },
-  {
-    slug: "hostel-management-system",
-    title: "hostel-management-system",
-    summary: "A program written in C++ for property management",
-    tags: ["C++"],
-    repoUrl: gh("hostel-management-system"),
+    slug: "album-wall",
+    title: "Album__Wall",
+    summary: "Creates device wallpapers from images you own or are licensed to use.",
+    tags: ["TypeScript", "CSS", "Vercel"],
+    details: [
+      "Create wallpapers for iOS, Android, macOS, Windows, and Linux.",
+      "Preview images at selected device dimensions and download each result as a ZIP.",
+      "Preserve image proportions with padding or edge extension instead of cropping.",
+    ],
+    repoUrl: gh("Album__Wall"),
+    liveUrl: "https://albumwall-lemon.vercel.app",
   },
   {
     slug: "url-shortener",
     title: "url_shortener",
-    summary: "A URL shortener built to learn Docker, PostgreSQL and Redis",
-    tags: ["Docker", "PostgreSQL", "Redis"],
+    summary: "A Flask URL shortener backed by PostgreSQL and Redis, containerized with Docker Compose.",
+    tags: ["Python", "Docker", "PostgreSQL", "Redis"],
+    details: [
+      "Create short codes and redirect visitors to the original URLs through a Flask API.",
+      "Store URL mappings in PostgreSQL and cache frequent lookups in Redis.",
+      "Run the API, database, and cache together with Docker Compose.",
+    ],
     repoUrl: gh("url_shortener"),
   },
   {
-    slug: "pdf-audio",
-    title: "PDF-Audio",
-    summary: "PDF-Audio (Python)",
-    tags: ["Python"],
-    repoUrl: gh("PDF-Audio"),
+    slug: "e-commerce-web-app-development",
+    title: "e-commerce-web-app-development",
+    summary: "An AI-generated e-commerce landing page deployed to Vercel.",
+    tags: ["TypeScript", "CSS", "Vercel"],
+    details: [
+      "Scaffolded with v0, then reviewed and refined before deployment.",
+      "Hosted on Vercel with automatic HTTPS and edge protection.",
+      "The repository documents both dashboard and Vercel CLI deployment steps.",
+    ],
+    repoUrl: gh("e-commerce-web-app-development"),
+    liveUrl: "https://e-commerce-web-app-development-alpha.vercel.app",
   },
   {
-    slug: "login-page",
-    title: "Login-Page",
-    summary: "Login-Page (HTML)",
-    tags: ["HTML"],
-    repoUrl: gh("Login-Page"),
-  },
-  {
-    slug: "git-learning-log",
-    title: "git-learning-log",
-    summary: "My first Git project tracking a learning log",
-    tags: ["Git"],
-    repoUrl: gh("git-learning-log"),
+    slug: "distributed-system",
+    title: "distributed-system",
+    summary: "A distributed key-value store exploring replication, partitions, and CP/AP trade-offs.",
+    tags: ["Python", "Flask", "Docker"],
+    details: [
+      "Replicate writes across three nodes in CP mode.",
+      "Simulate network partitions and compare CP write rejection with AP availability.",
+      "Use last-write-wins to resolve conflicting values after a partition heals.",
+    ],
+    repoUrl: gh("distributed-system"),
   },
 ];
