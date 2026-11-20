@@ -1,6 +1,6 @@
 # Mos_dev portfolio
 
-**Live site:** [https://portfolio-omega-plum-40.vercel.app](https://portfolio-omega-plum-40.vercel.app)
+**Live site:** [https://portfolio-arti-son.vercel.app](https://portfolio-arti-son.vercel.app)
 
 Next.js (App Router), TypeScript, Tailwind CSS, Vitest.
 
