@@ -63,6 +63,150 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-links a:hover, .site-footer nav a:hover { color: var(--ink); }
 .nav-links a:active, .site-footer nav a:active { transform: scale(0.96); }
 
+/* ── MagnifyingDock glass tokens ────────────────────────────
+   Bencho's names resolve to the portfolio's existing grayscale
+   palette, glass surface and Space Grotesk UI font. Values without
+   a direct equivalent stay local to this navigation component. */
+.site-nav.gdock {
+  --fill-on: var(--ink);
+  --fill-slab: var(--on-ink);
+  --font-ui: var(--font-sans);
+  --g-blur: 22px;
+  --g-bright: 104%;
+  --g-edge-far: 12%;
+  --g-edge-hi: 56%;
+  --g-edge-lo: 12%;
+  --g-lift: 12%;
+  --g-sat: 150%;
+  --g-shadow: inset 0 1px 0 color-mix(in srgb, var(--on-ink) var(--g-spec), transparent), 0 10px 34px color-mix(in srgb, var(--ink) var(--g-lift), transparent);
+  --g-spec: 36%;
+  --ink: var(--color-text);
+  --ink-rgb: 33, 37, 41;
+  --on-ink: var(--paper);
+  --pane: var(--glass-fill);
+  --pane-edge: var(--white-glass);
+  --shadow-rgb: 33, 37, 41;
+  --try-edge: var(--white-glass);
+  gap: clamp(0.7rem, 2vw, 1.35rem);
+  position: relative;
+  isolation: isolate;
+  width: max-content;
+  justify-content: flex-start;
+  padding: 0.55rem 0.7rem 0.55rem 1rem;
+  overflow: visible;
+  background: var(--pane);
+  -webkit-backdrop-filter: blur(var(--g-blur)) saturate(var(--g-sat)) brightness(var(--g-bright));
+  backdrop-filter: blur(var(--g-blur)) saturate(var(--g-sat)) brightness(var(--g-bright));
+  box-shadow: var(--g-shadow);
+  color: var(--ink);
+}
+.site-nav.gdock::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background: linear-gradient(142deg,
+    color-mix(in srgb, var(--on-ink) var(--g-edge-hi), transparent) 0%,
+    color-mix(in srgb, var(--on-ink) var(--g-edge-lo), transparent) 28%,
+    color-mix(in srgb, var(--on-ink) var(--g-edge-lo), transparent) 64%,
+    color-mix(in srgb, var(--on-ink) var(--g-edge-far), transparent) 100%) border-box;
+  -webkit-mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.site-nav.gdock .wordmark { flex: 0 0 auto; }
+.gdock-items {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 7px;
+  padding: 5px 7px;
+  border-radius: 22px;
+  touch-action: pan-y;
+}
+.gdock-items::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--ink) 3.5%, transparent);
+  pointer-events: none;
+}
+.gdock-item {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--ink);
+  opacity: 0.52;
+  cursor: pointer;
+  transition: opacity 220ms ease, color 180ms ease;
+}
+.gdock-item[data-near="1"] { opacity: 0.76; }
+.gdock-item[data-near="0"], .gdock-item[data-active="true"] { opacity: 1; }
+.gdock-item:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.gdock-glyph {
+  display: grid;
+  place-items: center;
+  transform-origin: center bottom;
+  transition: transform 420ms cubic-bezier(0.24, 1.34, 0.38, 1);
+  will-change: transform;
+}
+.gdock-dot {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  margin-left: -1.5px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 220ms ease, transform 420ms cubic-bezier(0.24, 1.34, 0.38, 1);
+}
+.gdock-dot[data-on="true"] { opacity: 0.62; transform: scale(1); }
+/* ONE tip that travels: its measured centre follows the icon while
+   its width reveals each word, like a small sheet sliding on glass. */
+.gdock-tip {
+  position: absolute;
+  z-index: 3;
+  bottom: calc(100% + 7px);
+  left: 0;
+  display: inline-flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--pane-edge, var(--try-edge));
+  border-radius: 999px;
+  background: var(--fill-on);
+  color: var(--fill-slab);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 30px;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 8px 20px var(--eye-shadow), inset 0 1px 0 var(--white-highlight);
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), width 180ms cubic-bezier(0.22, 1, 0.36, 1), opacity 140ms ease;
+}
+.gdock-tip > span { flex: none; }
+.gdock-tip:not([data-ready]) { transition: opacity 140ms ease; }
+.gdock-tip[data-on="true"] { opacity: 1; }
+
 .hero {
   position: relative;
   min-height: min(790px, calc(100svh - 5.2rem));
@@ -191,6 +335,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .site-nav { min-height: 3.75rem; padding-left: 0.8rem; }
   .wordmark { gap: 0.45rem; font-size: 0.86rem; }
   .wordmark-mark { width: 1.8rem; height: 1.8rem; }
+  .site-nav.gdock .wordmark > span { display: none; }
   .coordinate-mascot { width: 0.75rem; height: 0.75rem; }
   .site-nav { gap: 0.55rem; padding-right: 0.65rem; }
   .nav-links { max-width: none; padding-left: 0.7rem; opacity: 1; gap: clamp(0.55rem, 2.8vw, 0.85rem); }
@@ -234,10 +379,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 @media (prefers-reduced-transparency: reduce) {
   .site-nav { border-color: var(--line); background: var(--paper); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .site-nav.gdock { --pane: var(--paper); --pane-edge: var(--line); }
 }
 @media (prefers-contrast: more) {
   .site-nav, .project-card, .skill-list li { border-color: currentColor; }
   .contact-panel { outline: 1px solid var(--paper); outline-offset: -6px; }
+}
+@media (prefers-color-scheme: dark) {
+  .site-nav.gdock {
+    --ink-rgb: 248, 249, 250;
+    --shadow-rgb: 33, 37, 41;
+    --g-edge-hi: 24%;
+    --g-edge-lo: 8%;
+    --g-edge-far: 10%;
+  }
 }
 
 
