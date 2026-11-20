@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowUpRight, ArrowUp, X } from "lucide-react";
+import AssistantAvatar from "./AssistantAvatar";
 import BrandMark from "./BrandMark";
-import EyeTracker from "./EyeTracker";
 
 type Reply = { text: string; href?: string; link?: string };
 
@@ -155,13 +155,14 @@ export default function AssistantWidget() {
 
       <button
         className="assistant-toggle"
+        data-open={open || undefined}
         type="button"
         aria-label={open ? "Close Mos_dev assistant" : "Open Mos_dev assistant"}
         aria-expanded={open}
         aria-controls={open ? "assistant-panel" : undefined}
         onClick={() => setOpen((current) => !current)}
       >
-        <EyeTracker size={64} />
+        <AssistantAvatar size={64} />
         <span className="assistant-presence" aria-hidden="true" />
         <span className="sr-only">{open ? "Close assistant" : "Ask the portfolio assistant"}</span>
       </button>

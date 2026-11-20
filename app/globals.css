@@ -890,8 +890,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .portfolio-assistant {
   --bg: var(--paper);
   --card: var(--paper-deep);
-  --fill-on: var(--pupil-fill);
-  --fill-slab: var(--paper);
   --font-ui: var(--font-sans);
   --ink: var(--color-text);
   position: fixed;
@@ -900,61 +898,52 @@ button, a { -webkit-tap-highlight-color: transparent; }
   bottom: max(1rem, env(safe-area-inset-bottom));
   font-family: var(--font-ui);
 }
-.eye-tracker {
-  --bg: var(--paper);
-  --card: var(--paper-deep);
-  --fill-on: var(--pupil-fill);
-  --fill-slab: var(--paper);
-  --font-ui: var(--font-sans);
-  --ink: var(--color-text);
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: var(--eye-size);
-  height: var(--eye-size);
-  pointer-events: none;
+.assistant-avatar {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(var(--avatar-size), 100%);
+  height: min(var(--avatar-size), 100%);
+  place-items: center;
 }
-.eye-tracker-mascot {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
+.assistant-avatar-mascot {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 4px 8px var(--glass-shadow));
+  transform-origin: 50% 78%;
+  transition: transform 360ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
 }
-/* The mascot's white eye marks become windows for two small ink pupils. */
-.eye-tracker-pupil {
-  position: absolute;
-  z-index: 1;
-  top: 47.4%;
-  width: 4%;
-  height: 9%;
-  border-radius: 999px;
-  background: var(--fill-on);
-  transform-origin: center;
-  scale: 1 1;
-  transition: scale 90ms ease;
-}
-.eye-tracker-pupil[data-eye="left"] { left: 36.5%; }
-.eye-tracker-pupil[data-eye="right"] { left: 46.6%; }
-.eye-tracker[data-blink="true"] .eye-tracker-pupil { scale: 1 0.12; }
 .assistant-toggle {
   position: relative;
+  isolation: isolate;
   display: grid;
   width: 76px;
   height: 76px;
   place-items: center;
   padding: 5px;
   border: 1px solid var(--card-border);
-  border-radius: 50%;
-  background: var(--bg);
+  border-radius: 1.35rem;
+  background: var(--glass-fill);
   color: var(--ink);
-  box-shadow: 0 10px 30px var(--glass-shadow), inset 0 1px var(--white-highlight);
+  box-shadow: 0 12px 32px var(--glass-shadow), inset 0 1px var(--white-highlight);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
 }
+.assistant-toggle::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 4px;
+  border: 1px solid var(--white-highlight);
+  border-radius: 1.05rem;
+  pointer-events: none;
+}
 .assistant-toggle:hover { transform: translateY(-3px) scale(1.025); box-shadow: 0 15px 34px var(--eye-shadow-hover), inset 0 1px var(--white-highlight); }
+.assistant-toggle:hover .assistant-avatar-mascot { transform: translateY(-2px) rotate(-3deg) scale(1.035); filter: drop-shadow(0 6px 10px var(--glass-shadow)); }
+.assistant-toggle[data-open="true"] .assistant-avatar-mascot { animation: assistant-mascot-greet 520ms cubic-bezier(.22,1,.36,1) both; }
 .assistant-toggle:active { transform: scale(0.96); }
 .assistant-toggle:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
 .assistant-presence {
@@ -966,6 +955,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border: 2px solid var(--bg);
   border-radius: 50%;
   background: var(--accent-fill);
+}
+@keyframes assistant-mascot-greet {
+  0% { transform: translateY(0) rotate(0); }
+  38% { transform: translateY(-3px) rotate(-5deg); }
+  72% { transform: translateY(0) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0); }
 }
 .assistant-panel {
   position: absolute;
@@ -1063,7 +1058,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 @media (prefers-reduced-motion: reduce) {
   .assistant-panel { animation: none; }
-  .assistant-toggle, .assistant-close, .assistant-suggestions button, .assistant-form button { transition: none; }
+  .assistant-toggle, .assistant-avatar-mascot, .assistant-close, .assistant-suggestions button, .assistant-form button { transition: none; }
+  .assistant-toggle[data-open="true"] .assistant-avatar-mascot { animation: none; }
 }
 @media (prefers-reduced-transparency: reduce) {
   .assistant-panel { background: var(--card); -webkit-backdrop-filter: none; backdrop-filter: none; }

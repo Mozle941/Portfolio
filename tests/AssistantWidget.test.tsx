@@ -3,6 +3,13 @@ import { describe, expect, it } from "vitest";
 import AssistantWidget from "@/components/AssistantWidget";
 
 describe("AssistantWidget", () => {
+  it("renders the branded mascot without eye-tracking overlays", () => {
+    const { container } = render(<AssistantWidget />);
+    expect(container.querySelector(".assistant-avatar-mascot")).toBeInTheDocument();
+    expect(container.querySelector(".eye-tracker")).not.toBeInTheDocument();
+    expect(container.querySelector(".eye-tracker-pupil")).not.toBeInTheDocument();
+  });
+
   it("opens a labeled assistant panel from the mascot avatar", () => {
     render(<AssistantWidget />);
     fireEvent.click(screen.getByRole("button", { name: "Open Mos_dev assistant" }));
