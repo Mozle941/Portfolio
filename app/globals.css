@@ -882,3 +882,194 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .contact-toast-action,
   .contact-toast-dismiss { transition: none; }
 }
+
+
+/* ── the little portfolio assistant ─────────────────────────
+   Bencho's token names resolve only inside this widget: the
+   existing paper, surface, ink and UI font stay the source of truth. */
+.portfolio-assistant {
+  --bg: var(--paper);
+  --card: var(--paper-deep);
+  --fill-on: var(--pupil-fill);
+  --fill-slab: var(--paper);
+  --font-ui: var(--font-sans);
+  --ink: var(--color-text);
+  position: fixed;
+  z-index: 70;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  font-family: var(--font-ui);
+}
+.eye-tracker {
+  --bg: var(--paper);
+  --card: var(--paper-deep);
+  --fill-on: var(--pupil-fill);
+  --fill-slab: var(--paper);
+  --font-ui: var(--font-sans);
+  --ink: var(--color-text);
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: var(--eye-size);
+  height: var(--eye-size);
+  pointer-events: none;
+}
+.eye-tracker-mascot {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* The mascot's white eye marks become windows for two small ink pupils. */
+.eye-tracker-pupil {
+  position: absolute;
+  z-index: 1;
+  top: 47.4%;
+  width: 4%;
+  height: 9%;
+  border-radius: 999px;
+  background: var(--fill-on);
+  transform-origin: center;
+  scale: 1 1;
+  transition: scale 90ms ease;
+}
+.eye-tracker-pupil[data-eye="left"] { left: 36.5%; }
+.eye-tracker-pupil[data-eye="right"] { left: 46.6%; }
+.eye-tracker[data-blink="true"] .eye-tracker-pupil { scale: 1 0.12; }
+.assistant-toggle {
+  position: relative;
+  display: grid;
+  width: 76px;
+  height: 76px;
+  place-items: center;
+  padding: 5px;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 10px 30px var(--glass-shadow), inset 0 1px var(--white-highlight);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
+}
+.assistant-toggle:hover { transform: translateY(-3px) scale(1.025); box-shadow: 0 15px 34px var(--eye-shadow-hover), inset 0 1px var(--white-highlight); }
+.assistant-toggle:active { transform: scale(0.96); }
+.assistant-toggle:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+.assistant-presence {
+  position: absolute;
+  right: 4px;
+  bottom: 5px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+  background: var(--accent-fill);
+}
+.assistant-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.9rem);
+  display: flex;
+  width: min(23rem, calc(100vw - 2rem));
+  max-height: min(38rem, calc(100dvh - 7.5rem));
+  flex-direction: column;
+  overflow: auto;
+  border: 1px solid var(--card-border);
+  border-radius: 1.35rem;
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 20px 60px var(--glass-shadow), inset 0 1px var(--white-highlight);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  backdrop-filter: blur(24px) saturate(145%);
+  transform-origin: bottom right;
+  animation: assistant-arrive 240ms cubic-bezier(.2,.8,.2,1) both;
+}
+.assistant-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+.assistant-panel-avatar {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg);
+}
+.assistant-panel-mascot { width: 2.1rem; height: 2.1rem; object-fit: contain; }
+.assistant-panel-heading { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 0.15rem; }
+.assistant-panel-heading strong { font-size: 0.9rem; font-weight: 650; letter-spacing: -0.025em; }
+.assistant-panel-heading > span { color: var(--ink-soft); font-size: 0.72rem; }
+.assistant-close {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.assistant-close:hover { background: var(--bg); color: var(--ink); }
+.assistant-conversation { display: flex; flex-direction: column; gap: 0.9rem; padding: 1rem 1rem 0.35rem; }
+.assistant-greeting, .assistant-answer > p { margin: 0; font-size: 0.85rem; line-height: 1.55; }
+.assistant-greeting { align-self: flex-start; max-width: 91%; padding: 0.78rem 0.9rem; border: 1px solid var(--line); border-radius: 0.35rem 1rem 1rem 1rem; background: var(--bg); }
+.assistant-exchange { display: flex; flex-direction: column; gap: 0.55rem; }
+.assistant-question { align-self: flex-end; max-width: 91%; margin: 0; padding: 0.65rem 0.85rem; border-radius: 1rem 0.35rem 1rem 1rem; background: var(--ink); color: var(--paper); font-size: 0.82rem; line-height: 1.45; }
+.assistant-question span { display: block; margin-bottom: 0.15rem; opacity: 0.64; font-size: 0.62rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; }
+.assistant-answer { align-self: flex-start; max-width: 95%; padding: 0.78rem 0.9rem; border: 1px solid var(--line); border-radius: 0.35rem 1rem 1rem 1rem; background: var(--bg); }
+.assistant-answer a { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.6rem; color: var(--ink); font-size: 0.78rem; font-weight: 650; }
+.assistant-answer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.assistant-suggestions { display: flex; flex-wrap: wrap; gap: 0.45rem; padding: 0.65rem 1rem; }
+.assistant-suggestions button {
+  min-height: 2rem;
+  padding: 0.42rem 0.68rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+.assistant-suggestions button:hover { border-color: var(--ink); color: var(--ink); }
+.assistant-form { display: flex; align-items: center; gap: 0.5rem; margin: 0 1rem; padding: 0.38rem 0.4rem 0.38rem 0.85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+.assistant-form input { width: 100%; min-width: 0; min-height: 2.25rem; border: 0; outline: 0; background: transparent; color: var(--ink); font-family: var(--font-ui); font-size: 0.82rem; }
+.assistant-form input::placeholder { color: var(--ink-soft); opacity: 0.78; }
+.assistant-form button { display: grid; width: 2.1rem; height: 2.1rem; flex: 0 0 auto; place-items: center; border: 0; border-radius: 50%; background: var(--ink); color: var(--paper); cursor: pointer; transition: opacity 160ms ease, transform 160ms ease; }
+.assistant-form button:hover:not(:disabled) { transform: translateY(-1px); }
+.assistant-form button:disabled { opacity: 0.42; cursor: not-allowed; }
+.assistant-note { margin: 0; padding: 0.55rem 1rem 0.9rem; color: var(--ink-soft); font-size: 0.67rem; line-height: 1.4; text-align: center; }
+@keyframes assistant-arrive {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 520px) {
+  .assistant-toggle { width: 68px; height: 68px; }
+  .assistant-panel { width: min(22rem, calc(100vw - 2rem)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .assistant-panel { animation: none; }
+  .assistant-toggle, .assistant-close, .assistant-suggestions button, .assistant-form button { transition: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .assistant-panel { background: var(--card); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  .assistant-panel, .assistant-toggle, .assistant-form, .assistant-suggestions button,
+  .assistant-greeting, .assistant-answer { border-color: currentColor; }
+  .assistant-presence { outline: 1px solid currentColor; }
+}
