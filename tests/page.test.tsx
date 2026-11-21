@@ -19,7 +19,9 @@ describe("page", () => {
 describe("metadata", () => {
   it("sets title, description and openGraph", () => {
     expect(metadata.title).toBeTruthy();
-    expect(metadata.description).toBe("Student developer building toward DevOps and cloud engineering.");
+    expect(metadata.description).toBe(
+      "Explore Moses’s portfolio of software projects, technical skills, testimonials, and contact details, with a focus on DevOps and cloud engineering.",
+    );
     expect(metadata.openGraph?.title).toBeTruthy();
     expect(metadata.openGraph?.description).toBeTruthy();
   });
