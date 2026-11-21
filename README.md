@@ -1,18 +1,40 @@
-# Mos_dev portfolio
+# Mos_dev Portfolio
 
-**Live site:** [https://portfolio-omega-plum-40.vercel.app/](https://portfolio-omega-plum-40.vercel.app/)
+**Live site:** [portfolio-omega-plum-40.vercel.app](https://portfolio-omega-plum-40.vercel.app/)
 
-Next.js (App Router), TypeScript, Tailwind CSS, Vitest.
+A responsive portfolio for Moses, a student developer building toward DevOps and cloud engineering. It brings selected projects, technical skills, testimonials, and contact details together in a polished, theme-aware interface, with a custom mascot and subtle motion.
 
-```
+## Highlights
+
+- Explore four featured projects, with expandable details and repository links.
+- Browse the skills and testimonials sections.
+- Use the validated contact form to prepare an email draft for review and sending.
+- Ask the floating mascot assistant quick questions about the portfolio, projects, and skills.
+- Responsive layouts, dark-mode styling, and reduced-motion support.
+
+## Screenshots
+
+<div align="center">
+  <img src="./public/screenshots/portfolio-desktop.png" alt="Desktop screenshot of the Mos_dev portfolio homepage" width="720" />
+  &nbsp;
+  <img src="./public/screenshots/portfolio-mobile.png" alt="Mobile screenshot of the responsive Mos_dev portfolio homepage" width="220" />
+</div>
+
+## Built with
+
+Next.js App Router, React, TypeScript, Tailwind CSS, and Vitest.
+
+## Run locally
+
+```bash
 npm ci
 npm run dev
-npm run lint && npm test && npm run build
 ```
 
-## Deploy (Task 10)
+Run the project checks with:
 
-1. Push to GitHub.
-2. Import the repo in Vercel. Framework preset: Next.js.
-3. Set `NEXT_PUBLIC_SITE_URL` to the production URL, then redeploy (used by metadata and sitemap).
-4. Run Lighthouse on the production URL. Target: Performance, Accessibility, Best Practices, SEO >= 90.
+```bash
+npm run lint
+npm test
+npm run build
+```
